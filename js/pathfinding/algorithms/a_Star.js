@@ -2,6 +2,9 @@
 //Hcost - distance from end node
 //Fcost = Gcost + Fcost
 
+//Object implementation of A* algorithm
+//A* is relativly efficient and accurate
+
 function a_Star(grid){
     costs = {}
     this.start = function start(){
@@ -13,33 +16,9 @@ function a_Star(grid){
         this.calculateCostSurrounding(this.startCoords,0)
         counter = 0;
         this.startSearch()
-        // while(!endFound){
-        //     if(this.endCoords in costs){
-        //         endFound = true
-        //         startFound = false
-        //         console.log("here")
-        //         clearInterval(interval)
-        //         prev = costs[this.endCoords].origin
-        //         while(!startFound){
-        //             if(prev == this.startCoords){
-        //                 startFound = true
-        //                 return
-        //             }
-        //             document.querySelector('.row[id="'+Math.abs(prev[1])+'"] .col[id="'+Math.abs(prev[0])+'"]').classList.add("path") 
-        //             prev = costs[prev].origin
-        //             //   for(element in costs){
-        //             //       element = element.split(",").map(Number)
-        //             //       document.querySelector('.row[id="'+Math.abs(element[1])+'"] .col[id="'+Math.abs(element[0])+'"]').childNodes[0].innerHTML = "<h6 style='color:red; float:left'>"+~~costs[element].Gcost+"</h6><h6 style='color:green ; float:right'>"+~~costs[element].Hcost+"</h6><h6 style='color:blue ;'>"+~~costs[element].Fcost+"</h6>"
-        //             //   }
-        //         } 
-        //     }
-        //     else{
-        //         [lowest,Gcosttemp] = this.findLowestFcost()
-        //         this.calculateCostSurrounding(lowest,Gcosttemp)
-        //     }
-        // }
     }
 
+    //start the search algorithm
     this.startSearch = function startSearch(){
         var that = this;
         let interval = setInterval(function(){
@@ -61,6 +40,7 @@ function a_Star(grid){
                     }
                     document.querySelector('.row[id="'+Math.abs(prev[1])+'"] .col[id="'+Math.abs(prev[0])+'"]').classList.add("path") 
                     prev = costs[prev].origin
+                    //Uncomment to see algorithm scores
                     //   for(element in costs){
                     //       element = element.split(",").map(Number)
                     //       document.querySelector('.row[id="'+Math.abs(element[1])+'"] .col[id="'+Math.abs(element[0])+'"]').childNodes[0].innerHTML = "<h6 style='color:red; float:left'>"+~~costs[element].Gcost+"</h6><h6 style='color:green ; float:right'>"+~~costs[element].Hcost+"</h6><h6 style='color:blue ;'>"+~~costs[element].Fcost+"</h6>"
@@ -75,6 +55,7 @@ function a_Star(grid){
         }, 10)
     }
 
+    //return the coordinates of the square with the lowest Fcost
     this.findLowestFcost = function findLowestFcost(){
         lowestCoord = null
         lowestFcost = null
@@ -102,6 +83,8 @@ function a_Star(grid){
                 } 
                 else if (tempFcost == lowestFcost && tempCoord.closed == null){
                     if(tempHcost<lowestHcost){
+                        //if there are multiple elements with the same Fcost, select the one closest
+                        //to the end node
                         lowestFcost = tempFcost
                         lowestHcost = tempHcost
                         lowestCoord = coord
@@ -110,7 +93,7 @@ function a_Star(grid){
                 }
         }
         if(lowestCoord==null){
-            //no path
+            //all elements are closed and there is no path
             return [null,null]
         }
         squareCoord = lowestCoord.split(",").map(Number)
@@ -119,6 +102,7 @@ function a_Star(grid){
         return [lowestCoord.split(",").map(Number),Gcosttemp];
     }
 
+    //claculate distanc between coordinates
     this.calculateDistance = function (start,end){
         x_offset = start[0] - end[0]
         y_offset = start[1] - end[1]    
@@ -126,6 +110,7 @@ function a_Star(grid){
         return distance;
     }
 
+    //calculate the costs involved in the A* algorithm
     this.calculateCosts = function calculateCosts(squareCoord, origin, Gcosttemp){
         Gcost = Gcosttemp+Math.abs(Math.round( this.calculateDistance(origin,squareCoord,) * 10))
         Hcost = Math.abs(Math.round( this.calculateDistance(squareCoord, this.endCoords)*10))
@@ -140,17 +125,17 @@ function a_Star(grid){
             costs[squareCoord].origin = origin
         }
         else if (Fcost < costs[squareCoord].Fcost){
+            //if a better Fcoast is found, update the values
             costs[squareCoord].Gcost = Math.abs(Gcost)
             costs[squareCoord].Hcost = Math.abs(Hcost)
             costs[squareCoord].Fcost = Math.abs(Fcost)
             costs[squareCoord].origin = origin
         }
-
         document.querySelector('.row[id="'+Math.abs(squareCoord[1])+'"] .col[id="'+squareCoord[0]+'"]').classList.add("visisted")    
-
         return costs[squareCoord]
     }
 
+    //Calculate the cost of surrounding squares (not walls)
     this.calculateCostSurrounding = function calculateCostSurrounding(squareCoord,Gcosttemp){
         adjacent = []
         for(y = squareCoord[1]-1; y < squareCoord[1]+2; y ++){
@@ -166,6 +151,7 @@ function a_Star(grid){
         }
     }
 
+    //filter out walls from the surrounding nodes
     this.arrDiff = function arrDiff(arr1, arr2, origin){
         arr1temp = []
         arr2temp = []
@@ -179,8 +165,9 @@ function a_Star(grid){
             tempSquare = arr1temp[square].split(",").map(Number)
             x = tempSquare[0]
             y = tempSquare[1]
+            //Handle diagonals (Algorithm can not search through diagonal walls)
             if (x > origin[0]){
-                //bellow
+                //down
                 if(y>origin[1]){
                     //left
                     if(arr2temp.includes(String([origin[0],origin[1]-1])) && arr2temp.includes(String([origin[0]-1,origin[1]]))){
@@ -197,7 +184,7 @@ function a_Star(grid){
                 }
             }
             else if(x < origin[0]){
-                //above
+                //up
                 if(y>origin[1]){
                     //left
                     if(arr2temp.includes(String([origin[0],origin[1]+1])) && arr2temp.includes(String([origin[0]-1,origin[1]]))){
@@ -222,6 +209,7 @@ function a_Star(grid){
         return toreturnarr
     }
 
+    //return true if square is wall. Else false
     this.checkIfWall = function checkIfWall(coord){
         isWall = false
         for(wall in this.wallCoords)
