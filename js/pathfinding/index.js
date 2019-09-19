@@ -164,6 +164,17 @@ function PathFinderSetup(){
              item.classList.add("wall")
          }
     }
+
+    this.generateObstacles = function generateObstacles(){
+        probability = 10
+        squares = document.querySelectorAll(".square")
+        for(i = 0 ; i < squares.length; i++){
+            generatedNum = Math.floor(Math.random() * 101); 
+            if (generatedNum < probability){
+                this.makeWall(squares[i])
+            }
+        }
+    }
 }
 
 
@@ -181,6 +192,10 @@ function start(){
 function alg(){
     const aStarAlgorithm = new a_Star(gridGlobal)
     aStarAlgorithm.start()
+}
+
+function generate(){
+    gridGlobal.generateObstacles()
 }
 
 
