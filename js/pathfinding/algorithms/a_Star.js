@@ -112,8 +112,8 @@ function a_Star(grid){
 
     //calculate the costs involved in the A* algorithm
     this.calculateCosts = function calculateCosts(squareCoord, origin, Gcosttemp){
-        Gcost = Gcosttemp+Math.abs(Math.round( this.calculateDistance(origin,squareCoord,) * 10))
-        Hcost = Math.abs(Math.round( this.calculateDistance(squareCoord, this.endCoords)*10))
+        Gcost = Gcosttemp+this.calculateDistance(origin,squareCoord)
+        Hcost = this.calculateDistance(squareCoord, this.endCoords)
         Fcost = Gcost + Hcost
         if (costs[squareCoord] == null){
             costs[squareCoord] = {}
