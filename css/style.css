@@ -1,0 +1,120 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    padding: 0px;
+    margin: 0px;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+tr{
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+  
+}
+td{
+    border: 1px solid #2753a5;
+    
+}
+.square{
+    height: 25px;
+    width: 25px;
+}
+
+
+
+.pathFindingArea{
+    width: 100%;
+    height: 80vh;
+    
+}
+
+.pathFindingArea table{
+    margin: auto;
+    
+}
+
+
+*{
+    --wall-col: #454949;
+    --visited-col: #575fcf;
+    --closed-col: #0fbcf9;
+    --path-col: #f9ca24;
+    --start-col: #4bfaa8;
+    --end-col: #e74c3c;
+  }
+
+@keyframes pathAnimation {
+    from {background-color: white;}
+    to {background-color: var(--path-col)}
+  }
+
+@keyframes wallAnimation {
+from {background-color: white;}
+to {background-color: var(--wall-col);}
+}
+
+@keyframes startAnimation {
+    from {background-color: white;}
+    to {background-color: var(--start-col);}
+  }
+
+@keyframes endAnimation {
+    from {background-color: white;}
+    to {background-color: var(--end-col);}
+  }
+
+@keyframes visistedAnimation {
+    from {background-color: white;}
+    to {background-color: var(--visited-col);}
+  }
+
+@keyframes closedAnimation {
+    from {background-color: var(--visisted-col);}
+    to {background-color: var(--closed-col);}
+  }
+
+
+.wall{
+    animation-name: wallAnimation;
+    animation-duration: 0.2s;
+    background-color: var(--wall-col);
+}
+
+.visisted{
+    animation-name: visistedAnimation;
+    animation-duration: 0.2s;
+    background-color: var(--visited-col);
+}
+
+.closed{
+    animation-name: visistedAnimation;
+    animation-duration: 0.2s;
+    background-color: var(--closed-col);
+}
+
+.path{
+    animation-name: pathAnimation;
+    animation-duration: 0.2s;
+    background-color: var(--path-col);
+}
+.start{
+    animation-name: startAnimation;
+    animation-duration: 0.2s;
+    background-color: var(--start-col);
+}
+
+.end{
+    animation-name: endAnimation;
+    animation-duration: 0.2s;
+    background-color: var(--end-col);
+}
+
+/* document.querySelector('.row[id="5"] .col[id="7"]').classList.remove("path") */
+
+
