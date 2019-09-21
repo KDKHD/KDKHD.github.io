@@ -1,3 +1,4 @@
+//A* algorithm implementation
 //Gcost - distamce from start node
 //Hcost - distance from end node
 //Fcost = Gcost + Fcost
@@ -5,7 +6,7 @@
 //Object implementation of A* algorithm
 //A* is relativly efficient and accurate
 
-function a_Star(grid){
+function aStarAlg(grid){
     costs = {}
     this.start = function start(){
         endFound = false

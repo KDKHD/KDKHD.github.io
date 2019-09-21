@@ -165,6 +165,16 @@ function PathFinderSetup(){
          }
     }
 
+    this.clearPath = function clearPath(){
+        pathElements = document.querySelectorAll(".visisted, .closed, .path")
+        for(x = 0; x < pathElements.length; x ++){
+            pathElements[x].classList.remove("visisted")
+            pathElements[x].classList.remove("closed")
+            pathElements[x].classList.remove("path")
+        }
+    }
+
+
     this.generateObstacles = function generateObstacles(){
         probability = 10
         squares = document.querySelectorAll(".square")
@@ -189,10 +199,31 @@ function start(){
     return grid
 }
 
-function alg(){
-    const aStarAlgorithm = new a_Star(gridGlobal)
+function clearPath(){
+    gridGlobal.clearPath()
+}
+
+function a_star(){
+    const aStarAlgorithm = new aStarAlg(gridGlobal)
     aStarAlgorithm.start()
 }
+
+function Dijkstra(){
+    const DijkstraAlgorithm = new dijkstraAlg(gridGlobal)
+    DijkstraAlgorithm.start()
+}
+
+function bestfs(){
+    const BestFirstSearchAlgorithm = new bestFirstSearch(gridGlobal)
+    BestFirstSearchAlgorithm.start()
+}
+
+function breadthfs(){
+    const BreadthFirstSearchAlgorithm = new breadthFirstSearch(gridGlobal)
+    BreadthFirstSearchAlgorithm.start()
+}
+
+
 
 function generate(){
     gridGlobal.generateObstacles()
