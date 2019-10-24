@@ -7,7 +7,18 @@
 
 <body>
     <div class="nav">
-
+        
+        <ul>
+    <li><a onclick="start()" class="button4" style="background-color:#4e9af1">Reset Grid</a></li>
+    <li><a onclick="clearPath()" class="button4" style="background-color:#4e9af1">Clear path</a></li>
+    <li><a onclick="generate()" class="button4" style="background-color:#4e9af1">Generate Walls</a></li>
+        </ul>
+        <ul>
+    <li><a onclick="a_star()" class="button4" style="background-color:#f1bb4e">AStar</a></li>
+    <li><a onclick="Dijkstra()" class="button4" style="background-color:#f1bb4e">Dijkstra</a></li>
+    <li><a onclick="bestfs()" class="button4" style="background-color:#f1bb4e">Best First Search</a></li>
+    <li><a onclick="breadthfs()" class="button4" style="background-color:#f1bb4e">BFS</a></li>
+</ul>
     </div>
     <div class="pathFindingArea">
         <table>
@@ -17,13 +28,6 @@
             </tbody>
         </table>
     </div>
-<button onclick="start()">Create Grid</button>
-<button onclick="clearPath()">Clear path</button>
-<button onclick="a_star()">A*</button>
-<button onclick="Dijkstra()">Dijkstra</button>
-<button onclick="bestfs()">best first search</button>
-<button onclick="breadthfs()">breadth first search</button>
-<button onclick="generate()">Generate</button>
 </body>
 <script src="js/pathfinding/algorithms/astar.js"></script>
 <script src="js/pathfinding/algorithms/dijkstras.js"></script>

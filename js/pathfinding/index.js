@@ -1,7 +1,8 @@
+gridGlobal = null
 function PathFinderSetup(){
     //creates the grid
     this.createGrid = function createGrid(){
-        var w = document.querySelector('.pathFindingArea').offsetWidth;
+        var w = document.querySelector('.pathFindingArea').offsetWidth-300;
         var h = document.querySelector('.pathFindingArea').offsetHeight;
         for(var y = 0; y < (h/25)-3; y ++){
             var newRow = document.createElement("tr");
@@ -89,6 +90,7 @@ function PathFinderSetup(){
             item.addEventListener('mousedown', e => {
                 pickupStart=true
             });
+
         })
 
         document.querySelectorAll('.end').forEach(item => {
@@ -104,7 +106,13 @@ function PathFinderSetup(){
                 x = item.parentElement.id
                 y = item.parentElement.parentElement.id
                 if (isDrawing === true) {
-                    this.makeWall(item)
+                    if(e.altKey){
+                        this.removeWall(item)
+                    }
+                    else{
+                        this.makeWall(item)
+                    }
+                    
                 }
                 else if (pickupStart === true) {
                     starts = document.querySelectorAll(".start")
@@ -114,11 +122,11 @@ function PathFinderSetup(){
                         tempY = tempElement.parentElement.parentElement.id
                         if(tempX!=x || tempY!=y){
                             tempElement.classList.remove("start");
+                            
                         }
                     }
                     
-                        item.classList.add("start")
-                }
+                        item.classList.add("start")                }
                 else if (pickupEnd === true) {
                     ends = document.querySelectorAll(".end")
                     for(p = 0; p < ends.length;p++){
@@ -142,9 +150,12 @@ function PathFinderSetup(){
             }
             if (pickupStart === true) {
                 pickupStart = false;
+                gridGlobal.eventListeners()
+
                 }
             if (pickupEnd === true) {
                 pickupEnd = false;
+                gridGlobal.eventListeners()
                 }
 
         });
@@ -162,6 +173,12 @@ function PathFinderSetup(){
     this.makeWall = function makeWall(item){
         if(!(item.classList.contains("start") || item.classList.contains("end"))){
              item.classList.add("wall")
+         }
+    }
+
+    this.removeWall = function removeWall(item){
+        if(!(item.classList.contains("start") || item.classList.contains("end"))){
+             item.classList.remove("wall")
          }
     }
 
@@ -188,15 +205,16 @@ function PathFinderSetup(){
 }
 
 
-gridGlobal = null
+
+
+start()
 function start(){
-    const grid = new PathFinderSetup()
-    grid.clear()
-    grid.createGrid()
-    grid.randomStart()
-    grid.eventListeners() 
-    gridGlobal = grid
-    return grid
+    gridGlobal = new PathFinderSetup()
+    gridGlobal.clear()
+    gridGlobal.createGrid()
+    gridGlobal.randomStart()
+    gridGlobal.eventListeners() 
+    return gridGlobal
 }
 
 function clearPath(){
