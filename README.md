@@ -1,6 +1,6 @@
 # Pathfinding Visualiser
 
-This project visualises different path finding algorithms on a grid. One can build walls that the algorithms must traverse
+This project visualises different path finding algorithms on a grid. One can build walls (and destroy them by holding alt/option and dragging over them) that the algorithms must traverse.
 
 ## View Live Version
 
