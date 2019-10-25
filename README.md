@@ -1,10 +1,10 @@
 # Pathfinding-Visualiser
 
-This project visualises different path finding algorithms on a grid. One can build walls (and destroy them by holding alt/option and dragging over them) that the algorithms must traverse.
+This project visualizes different pathfinding algorithms on a grid. One can build walls (and destroy them by holding alt/option and dragging over them) that the algorithms must traverse.
 
 ## View Live Version
 
-Live version can be found here [kdkhd.github.io/Pathfinding-Visualiser/](https://kdkhd.github.io/Pathfinding-Visualiser/).
+A live version can be found here [kdkhd.github.io/Pathfinding-Visualiser/](https://kdkhd.github.io/Pathfinding-Visualiser/).
 
 
 ## Contributing
