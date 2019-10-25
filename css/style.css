@@ -180,6 +180,12 @@ li{
     white-space: nowrap;
 }
 
+footer h6{
+    margin: auto;
+    text-align: center;
+    color: white;
+}
+
 
 
 /* document.querySelector('.row[id="5"] .col[id="7"]').classList.remove("path") */
