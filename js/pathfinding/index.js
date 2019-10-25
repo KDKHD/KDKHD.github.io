@@ -87,25 +87,66 @@ function PathFinderSetup(){
         })
 
         document.querySelectorAll('.start').forEach(item => {
-            item.addEventListener('mousedown', e => {
-                pickupStart=true
-            });
-
+            item.addEventListener('mousedown',pickUpStartFunc);
         })
+
+        function pickUpStartFunc(){
+            pickupStart=true
+        }
 
         document.querySelectorAll('.end').forEach(item => {
-            item.addEventListener('mousedown', e => {
-                pickupEnd=true
-            });
+            item.addEventListener('mousedown', pickUpEndFunc);
         })
 
+        function pickUpEndFunc(){
+            pickupEnd=true
+        }
         
 
         document.querySelectorAll('.square').forEach(item => {
             item.addEventListener('mousemove', e => {
                 x = item.parentElement.id
                 y = item.parentElement.parentElement.id
-                if (isDrawing === true) {
+                if (pickupStart === true) {
+                    starts = document.querySelectorAll(".start")
+                    for(p = 0; p < starts.length;p++){
+                        tempElement = starts[p]
+                        tempX = tempElement.parentElement.id
+                        tempY = tempElement.parentElement.parentElement.id
+                        if(tempX!=x || tempY!=y){
+                            document.querySelectorAll('.start').forEach(itemtemp => {
+                                itemtemp.removeEventListener('mousedown',pickUpStartFunc);
+                            })
+                            tempElement.classList.remove("start");
+                            
+                        }
+                    }
+                        item.classList.add("start") 
+                        item.addEventListener('mousedown', e => {
+                            pickupStart=true
+                        });
+                                }
+                else if (pickupEnd === true) {
+                    ends = document.querySelectorAll(".end")
+                    for(p = 0; p < ends.length;p++){
+                        tempElement = ends[p]
+                        tempX = tempElement.parentElement.id
+                        tempY = tempElement.parentElement.parentElement.id
+                        if(tempX!=x || tempY!=y){
+                            document.querySelectorAll('.end').forEach(itemtemp => {
+                                itemtemp.removeEventListener('mousedown',pickUpEndFunc);
+                            })
+                            tempElement.classList.remove("end");
+
+                        }
+                    }
+                    
+                        item.classList.add("end")
+                        item.addEventListener('mousedown', e => {
+                            pickupEnd=true
+                        });
+                }
+                else if (isDrawing === true) {
                     if(e.altKey){
                         this.removeWall(item)
                     }
@@ -114,48 +155,21 @@ function PathFinderSetup(){
                     }
                     
                 }
-                else if (pickupStart === true) {
-                    starts = document.querySelectorAll(".start")
-                    for(p = 0; p < starts.length;p++){
-                        tempElement = starts[p]
-                        tempX = tempElement.parentElement.id
-                        tempY = tempElement.parentElement.parentElement.id
-                        if(tempX!=x || tempY!=y){
-                            tempElement.classList.remove("start");
-                            
-                        }
-                    }
-                    
-                        item.classList.add("start")                }
-                else if (pickupEnd === true) {
-                    ends = document.querySelectorAll(".end")
-                    for(p = 0; p < ends.length;p++){
-                        tempElement = ends[p]
-                        tempX = tempElement.parentElement.id
-                        tempY = tempElement.parentElement.parentElement.id
-                        if(tempX!=x || tempY!=y){
-                            tempElement.classList.remove("end");
-                        }
-                    }
-                    
-                        item.classList.add("end")
-                }
         });
         })
 
         document.querySelectorAll('.grid').forEach(item => {
             item.addEventListener('mouseup', e => {
             if (isDrawing === true) {
-            isDrawing = false;
+                isDrawing = false;
             }
             if (pickupStart === true) {
                 pickupStart = false;
-                gridGlobal.eventListeners()
 
                 }
             if (pickupEnd === true) {
                 pickupEnd = false;
-                gridGlobal.eventListeners()
+                
                 }
 
         });
