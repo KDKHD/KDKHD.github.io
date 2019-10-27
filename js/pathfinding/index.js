@@ -255,6 +255,11 @@ function breadthfs(){
     BreadthFirstSearchAlgorithm.start()
 }
 
+function dfs(){
+    const depthFirstSearchAlgorithm = new depthFirstSearch(gridGlobal)
+    depthFirstSearchAlgorithm.start()
+}
+
 
 
 function generate(){

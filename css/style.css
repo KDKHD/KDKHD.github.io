@@ -101,6 +101,7 @@ to {background-color: var(--wall-col);}
     animation-name: scaleAnimation;
     animation-duration: 0.4s;
     background-color: var(--visited-col);
+    
 }
 
 .closed{
@@ -109,6 +110,7 @@ to {background-color: var(--wall-col);}
     background-color: var(--closed-col);
     animation-name: scaleAnimation;
     animation-duration: 0.4s;
+    
 }
 
 .path{
@@ -124,6 +126,8 @@ to {background-color: var(--wall-col);}
     animation-name: scaleAnimation;
     animation-duration: 0.5s;
     background-color: var(--start-col);
+    
+    
 }
 
 .end{

@@ -1,4 +1,4 @@
-function breadthFirstSearch(grid){
+function depthFirstSearch(grid){
     var open = []
     var closed = []
     var weights = {}
@@ -20,7 +20,7 @@ function breadthFirstSearch(grid){
         let interval = setInterval(function(){
             if(that.checkIncludesArr(closed,{'coord':that.endCoords,'weight':9999})){
                 clearInterval(interval)
-                tempNode = open[0]
+                tempNode = open.pop()
                 that.calculateCostSurrounding(tempNode)
                 console.log("end found")
                 //backtrace
@@ -38,7 +38,7 @@ function breadthFirstSearch(grid){
                 }
                 return
             }
-            tempNode = open[0]
+            tempNode = open.pop()
             open.splice(0, 1); 
             includeVar = that.checkIncludesArr(closed,tempNode)
             if(includeVar == null){
