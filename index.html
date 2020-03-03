@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Pathfinding</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">    
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
     <div class="nav">
-        
+
         <ul>
-    <li><a onclick="start()" class="button4" style="background-color:#4e9af1">Reset Grid</a></li>
-    <li><a onclick="clearPath()" class="button4" style="background-color:#4e9af1">Clear path</a></li>
-    <li><a onclick="generate()" class="button4" style="background-color:#4e9af1">Generate Walls</a></li>
+            <li><a onclick="start()" class="button4" style="background-color:#4e9af1">Reset Grid</a></li>
+            <li><a onclick="clearPath()" class="button4" style="background-color:#4e9af1">Clear path</a></li>
+            <li><a onclick="generate()" class="button4" style="background-color:#4e9af1">Generate Walls</a></li>
+            <!-- <li><a onclick="dfs()" class="button4" style="background-color:#4e9af1">DFS Generate Walls</a></li> -->
+
         </ul>
         <ul>
-    <li><a onclick="a_star()" class="button4" style="background-color:#f1bb4e">AStar</a></li>
-    <li><a onclick="Dijkstra()" class="button4" style="background-color:#f1bb4e">Dijkstra</a></li>
-    <li><a onclick="bestfs()" class="button4" style="background-color:#f1bb4e">Best First Search</a></li>
-    <li><a onclick="breadthfs()" class="button4" style="background-color:#f1bb4e">BFS</a></li>
-    <!-- <li><a onclick="dfs()" class="button4" style="background-color:#f1bb4e">DFS</a></li> -->
+            <li><a onclick="a_star()" class="button4" style="background-color:#f1bb4e">AStar</a></li>
+            <li><a onclick="Dijkstra()" class="button4" style="background-color:#f1bb4e">Dijkstra</a></li>
+            <li><a onclick="bestfs()" class="button4" style="background-color:#f1bb4e">Best First Search</a></li>
+            <li><a onclick="breadthfs()" class="button4" style="background-color:#f1bb4e">BFS</a></li>
+            <!-- <li><a onclick="dfs()" class="button4" style="background-color:#f1bb4e">DFS</a></li> -->
 
-</ul>
+        </ul>
     </div>
     <div class="pathFindingArea">
         <table>
@@ -32,7 +35,8 @@
     </div>
 </body>
 <footer>
-    <h6>Project hosted at <a href="https://github.com/KDKHD/pathfinding" style="color: #4e9af1;">https://github.com/KDKHD/pathfinding</a></h6>
+    <h6>Project hosted at <a href="https://github.com/KDKHD/pathfinding"
+            style="color: #4e9af1;">https://github.com/KDKHD/pathfinding</a></h6>
 </footer>
 <script src="js/pathfinding/algorithms/astar.js"></script>
 <script src="js/pathfinding/algorithms/dijkstras.js"></script>
